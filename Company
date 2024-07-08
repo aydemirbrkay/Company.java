@@ -1,0 +1,50 @@
+package edu.erciyes.company;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Company {
+   ArrayList<Employee> employees=new ArrayList<>();
+   public Company(){
+       employees.add(new HourlyEmployee("ali",LocalDate.of(2022,12,10),20,220));
+       employees.add(1,new SalariedEmployee("mehmet",LocalDate.now(),120000));
+   }
+   public void printEmployee(){
+       for(Employee employee:employees)
+           System.out.println(employee.toString());
+   }
+
+    public double monthlyPayroll(){
+       double payroll=0.0;
+        for (Employee employee:employees)
+            payroll +=employee.monthlyPay();
+        return payroll;
+    }
+    public void sort(){
+        Collections.sort(employees);
+    }
+    public String toString(){
+       return employees.toString();
+    }
+
+
+    public static void main(String[] args) {
+//Object ob=new HourlyEmployee("can", LocalDate.of(2022,2,12));
+// HourlyEmployee ali=new HourlyEmployee("ali", LocalDate.of(2022,2,12),200,160);
+// HourlyEmployee ali=(HourlyEmployee) ob;
+// System.out.println(ali.toString());
+//   if(ob instanceof HourlyEmployee)
+//  {
+//     HourlyEmployee ali=(HourlyEmployee) ob;
+//    System.out.println(ali.toString());
+//  }
+        Company myCompany=new Company();
+        myCompany.printEmployee();
+        System.out.println(myCompany.toString());
+        System.out.println(myCompany.monthlyPayroll());
+        Employee ali=new HourlyEmployee("ali",LocalDate.of(2012,11,14),12,200);
+        Employee can=new SalariedEmployee("can",LocalDate.now(),120000);
+        System.out.println(ali.compareTo(can));
+    }
+}
