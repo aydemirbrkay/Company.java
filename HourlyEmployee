@@ -1,0 +1,38 @@
+package edu.erciyes.company;
+
+import java.time.LocalDate;
+
+public class HourlyEmployee extends Employee{
+    // bunları işe aldık ama bunlar için değişkenler tanımlamak lazım
+    private double mounthlyHours;
+    private double hourlyWage;
+    public HourlyEmployee(String name,LocalDate hiredate){
+       // super(name,hiredate);  //mutlaka ilk satırda olmalı
+       // mounthlyHours=200.0;
+       // hourlyWage=20.0;
+        this(name,hiredate,20,200);
+        //bir const içinde ya this olacak ya super aynı anda olamaz
+    }
+
+    public HourlyEmployee(String name, LocalDate hiredate,double hourlyWage,double mounthlyHours){  // const a da bu bilgileri ekleyelim
+        super(name,hiredate);   //super sınıfın const çapırmak zorunda yoksa hata
+        disallowZeroAndNegative(mounthlyHours,hourlyWage);
+        this.hourlyWage=hourlyWage;
+        this.mounthlyHours=mounthlyHours;
+    }
+    public double getMounthlyHours(){
+        return mounthlyHours;
+    }
+    public double getHourlyWage(){
+        return hourlyWage;
+    }
+    public double monthlyPay(){
+        return mounthlyHours*hourlyWage;
+    }
+    @Override
+    public String toString(){
+       // return getName()+" "+getHiredate()+" "+hourlyWage+" "+mounthlyHours; //employee deki toString i tekrar override ettik saatlik ücreti vs görmek için
+        return super.toString()+" "+hourlyWage+" "+mounthlyHours;  // şeklinde de yazılabilir ortak kullanılanlar var ise
+    }
+
+}
