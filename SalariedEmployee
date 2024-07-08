@@ -1,0 +1,28 @@
+package edu.erciyes.company;
+
+import java.time.LocalDate;
+
+public class SalariedEmployee extends Employee{
+    private double annualSalary;
+    private final static int MONTH=12;
+
+    public SalariedEmployee(String name, LocalDate hiredate,double annualSalary){ // constructer
+        super(name,hiredate);
+        this.annualSalary=annualSalary;
+        disallowZeroAndNegative(annualSalary);
+    }
+    public double getAnnualSalary(){
+        return annualSalary;
+    }
+    public double monthlyPay(){
+        return annualSalary/MONTH;       //aylık maaş
+    }
+
+
+
+    @Override
+    public String toString(){
+        return super.toString()+" "+annualSalary;
+    }
+
+}
