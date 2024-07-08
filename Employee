@@ -1,0 +1,46 @@
+package edu.erciyes.company;
+
+import java.time.LocalDate;
+
+public abstract class Employee implements Comparable<Employee>{
+    private String name;
+    private LocalDate hiredate;
+
+    public Employee(String name,LocalDate hiredate){
+        disallowNullArgs(name,hiredate);
+        this.name=name;
+        this.hiredate=hiredate;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public LocalDate getHiredate(){
+        return hiredate;
+    }
+
+    public abstract double monthlyPay();
+
+    @Override
+    public int compareTo(Employee other) {
+        return this.hiredate.compareTo(other.hiredate);
+    }
+
+    @Override
+    public String toString(){
+return name+" "+hiredate;  // bizim toString metodu istediğim şekilde çalışmıyordu override ettik
+    }
+
+    // 0 girilmesini istemiyoruz
+    public void disallowNullArgs(Object... args){
+        for(Object arg:args)
+            if (arg==null)
+                throw new IllegalArgumentException("null argument exception");
+    }
+ // 0 veya negatif değer istemiyoruz hem salaried hem de hourly employee için kullandık onun için Employee olarak genelledik
+    public void disallowZeroAndNegative(double... args){
+        for(double arg:args)
+            if (arg<=0)
+                throw new IllegalArgumentException("0 veya negatif");
+    }
+
+}
